@@ -1,30 +1,36 @@
 # skills
 
-Agent skills I use day to day and figured were worth sharing. They're written for Claude Code but work in any agent that reads `SKILL.md` files.
+A collection of agent skills for public use. Each skill is a `SKILL.md` file that any agent supporting the skill format can load.
 
-## Skills
+## Available skills
 
-| Skill | What it does |
+| Skill | Description |
 | --- | --- |
-| [are-we-done](skills/are-we-done/SKILL.md) | Audits the chat before you close it. Checks that every request got finished, nothing is still running, and no work is stranded (uncommitted changes, unpushed commits, open PRs). Answers yes or no, and if no, gives you up to 3 steps. |
+| [are-we-done](skills/are-we-done/SKILL.md) | Audits the current session before it is closed. It confirms that every request was completed and verified, that no processes were left running, and that no work remains stranded, such as uncommitted changes, unpushed commits, or open pull requests. It returns a yes or no verdict and, if work remains, a short list of next steps. |
 
-## Install
+## Installation
 
-With the [skills CLI](https://github.com/vercel-labs/skills):
+Using the [skills CLI](https://github.com/vercel-labs/skills):
 
 ```bash
 npx skills add zakiego/skills --skill are-we-done
 ```
 
-Or copy the folder by hand:
+Alternatively, clone the repository and copy the skill folder into your agent's skills directory:
 
 ```bash
 git clone https://github.com/zakiego/skills
-cp -r skills/skills/are-we-done ~/.claude/skills/
+cp -r skills/skills/are-we-done <your-agent-skills-directory>/
 ```
 
-Then type `/are-we-done` or ask "are we done?" before closing a session.
+## Usage
 
-## Notes
+Invoke the skill by name (for example, `/are-we-done`) or ask the agent whether the session is complete before closing it.
 
-These come straight from my own setup, so a few assume things about how I work (terse replies, no auto-posting, T3 Code tools). Tweak them to fit yours.
+## Customization
+
+These skills reflect the author's own workflow, including concise responses and a policy of never posting to external services without approval. Adjust them as needed to suit your environment.
+
+## License
+
+Released under the [MIT License](LICENSE).

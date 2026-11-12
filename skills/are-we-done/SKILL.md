@@ -52,7 +52,7 @@ Flag failing checks, unresolved review comments, or a merge the user asked for t
 Leftover processes (dev servers, browsers, workers):
 
 ```bash
-find /tmp/claude-dev -name '*.pid' 2>/dev/null | while read -r f; do kill -0 "$(cat "$f")" 2>/dev/null && echo "running: $f"; done
+find /tmp/agent-dev -name '*.pid' 2>/dev/null | while read -r f; do kill -0 "$(cat "$f")" 2>/dev/null && echo "running: $f"; done
 /bin/ps -Ao pid,command | grep -iE "wrangler|workerd|agent-browser|chromium|vite|next dev|esbuild" | grep -v grep
 ```
 
@@ -61,7 +61,7 @@ The `ps` list covers the whole machine, so most of what it shows belongs to othe
 Also check, when relevant:
 
 - Background tasks, delegated tasks, or subagents started this session that haven't reported back
-- In T3 Code: PRs this thread created or is watching (`list_thread_pull_requests`), and whether a watch should be dropped before closing
+- PRs this session created or is watching, and whether a watch should be dropped before closing
 - Scheduled tasks, cron jobs, or watched PRs created this session (are they meant to outlive the chat?)
 - Temporary files, worktrees, or node_modules that should be cleaned up
 - Secrets or env vars that were set locally but not saved where they need to live
@@ -84,7 +84,7 @@ Not yet.
 
 1. Commit the auth fix in ~/repo.
 2. Kill the dev server:
-   kill $(cat /tmp/claude-dev/app.pid)
+   kill $(cat /tmp/agent-dev/app.pid)
 
 Want me to do 1 now?
 ```
