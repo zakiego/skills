@@ -1,0 +1,8 @@
+# Env keys that a repo's own setup regenerates fresh in every worktree, so the
+# worktree's value is throwaway and may differ from the main checkout.
+# Copy to ~/.config/t3-skill/per-worktree-keys.txt (or set T3_PER_WORKTREE_KEYS).
+# Format: <repo folder under ~/.t3/worktrees> <KEY>
+# Add a key only with evidence from the repo, and note where it came from.
+
+# my-app docs/architecture.md: `pnpm wt:setup` writes a fresh auth secret per worktree.
+# my-app BETTER_AUTH_SECRET
