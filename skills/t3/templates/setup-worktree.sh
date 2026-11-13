@@ -3,6 +3,15 @@
 # T3 runs it in the worktree on create (see t3.json); it also works by hand.
 set -euo pipefail
 
+# Queue behind any other install or build on this machine (shared with Claude's
+# heavy-guard hook), so many worktrees created at once install one at a time.
+# No-op when the helper isn't installed or the lock is already held.
+heavy_lock="$HOME/.claude/hooks/heavy-lock.sh"
+if [ -f "$heavy_lock" ]; then
+  # shellcheck source=/dev/null
+  . "$heavy_lock" 1800 "t3 setup $(basename "$PWD")"
+fi
+
 root="$(git rev-parse --show-toplevel)"
 # T3 sets T3CODE_PROJECT_ROOT to the main checkout; fall back to git outside T3.
 main_root="${T3CODE_PROJECT_ROOT:-$(dirname "$(git rev-parse --path-format=absolute --git-common-dir)")}"
