@@ -249,7 +249,7 @@ EOF
       fi
       # No --force: git itself refuses if anything changed since the check.
       if git -C "$main" worktree remove "$wt" 2>/tmp/t3wt-err.$$; then
-        printf '%s\tremoved\t%s\t%s\t%s\t%s\trestore: git -C %q worktree add %q %q\n' \
+        printf '%s\tremoved\t%s\t%s\t%s\t%s\t%s\trestore: git -C %q worktree add %q %q\n' \
           "$(date '+%Y-%m-%d %H:%M:%S')" "$main" "$wt" "$br" "$sha" "$why" "$main" "$wt" "$br" >> "$LOG"
         echo "OK    ${wt#$ROOT/} ($br, $why)"
         rmdir "$(dirname "$wt")" 2>/dev/null || true   # only if the repo folder is now empty
